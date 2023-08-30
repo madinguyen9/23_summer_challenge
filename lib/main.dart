@@ -6,41 +6,28 @@ void main() {
   runApp(MyApp());
 }
 
+
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => MyAppState(),
-      child: MaterialApp(
-        title: 'Namer App',
+    return MaterialApp(
+        title: 'Flutter',
         theme: ThemeData(
-          useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+          primarySwatch: Colors.pink,
         ),
-        home: MyHomePage(),
-      ),
+        home: const LoginPage(),
     );
   }
 }
 
-class MyAppState extends ChangeNotifier {
-  var current = WordPair.random();
-}
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
 
-class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var appState = context.watch<MyAppState>();
-
-    return Scaffold(
-      body: Column(
-        children: [
-          Text('A random idea:'),
-          Text(appState.current.asLowerCase),
-        ],
-      ),
-    );
+    return const Scaffold();
   }
 }
