@@ -2,6 +2,8 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/home_page.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_app/utils.dart';
+import 'package:flutter_app/favorites.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +16,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
+    
     return MaterialApp(
+		title: 'Flutter',
+		debugShowCheckedModeBanner: false,
+		scrollBehavior: MyCustomScrollBehavior(),
+		theme: ThemeData(
+		primarySwatch: Colors.blue,
+		),
+		home: Scaffold(
+		body: SingleChildScrollView(
+			child: Scene(),
+		),
+		),
+	);
+    /*return MaterialApp(
       title: 'Flutter',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -22,11 +39,11 @@ class MyApp extends StatelessWidget {
       ),
       home: const LoginPage(),
 
-    );
+    );*/
   }
 }
 
-class LoginPage extends StatelessWidget {
+/*class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
@@ -87,4 +104,4 @@ class LoginPage extends StatelessWidget {
     );
 
   }
-}
+}*/
