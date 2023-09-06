@@ -10,7 +10,8 @@ class Scene extends StatelessWidget {
     double baseWidth = 390;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
+    return Scaffold(
+      body: Container(
       width: double.infinity,
       child: Container(
         // loginsaf (7:103)
@@ -33,13 +34,7 @@ class Scene extends StatelessWidget {
               height: 690.13*fem,
               child: Stack(
                 children: [
-                  Container(
-                    child: Image.asset(
-                    'images/friend-ily-29-1-Les.png',
-                    //flower background image ^
-                    fit: BoxFit.cover,
-                  ),
-                  ),
+                 
                   Positioned(
                     // frame7wgK (8:144)
           
@@ -60,6 +55,8 @@ class Scene extends StatelessWidget {
                           ),
                         ],
                       ),
+                      child: Container(
+                        height: 322.5,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -77,9 +74,7 @@ class Scene extends StatelessWidget {
                                 color: Color(0xff000000),
                               ),
                             ),
-                            
                           ),
-                          
                           Container(
                             // frame5To5 (8:146)
                             margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 20*fem),
@@ -89,9 +84,13 @@ class Scene extends StatelessWidget {
                               color: Color(0x0a000000),
                               borderRadius: BorderRadius.circular(30*fem),
                             ),
-                            child: Text(
-                              'Email address',
+                            child: TextField(
+                              decoration: InputDecoration(
+                                hintText: 'Email Address',
+                                ),
+
                               textAlign: TextAlign.center,
+
                               style: SafeGoogleFont (
                                 'Poppins',
                                 fontSize: 17*ffem,
@@ -126,6 +125,7 @@ class Scene extends StatelessWidget {
                           ),
                           ClipRect(
                             // frame3Aqu (8:150)
+
                             child: BackdropFilter(
                               filter: ImageFilter.blur (
                                 sigmaX: 30*fem,
@@ -204,12 +204,14 @@ class Scene extends StatelessWidget {
                           ),
                         ],
                       ),
+                      ),
+                      
                     ),
                   ),
                   Positioned(
                     // friendilymFM (29:91)
                     left: 56*fem,
-                    top: 70*fem,
+                    top: 115*fem,
                     child: Align(
                       child: SizedBox(
                         width: 278*fem,
@@ -228,11 +230,25 @@ class Scene extends StatelessWidget {
                       ),
                     ),
                   ),
-                  
+                  Positioned(
+                    // heartguy
+                    left: 139*fem,
+                    top: 195*fem,
+                    child: Align(
+                      child: SizedBox(
+                        width: 100*fem,
+                        height: 104*fem,
+                        child: Image.asset(
+                          'images/-kSj.png',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
                   Positioned(
                     // friendily35copy21x4w (176:624)
                     left: 139*fem,
-                    top: 155*fem,
+                    top: 290*fem,
                     child: Align(
                       child: SizedBox(
                         width: 40*fem,
@@ -247,7 +263,7 @@ class Scene extends StatelessWidget {
                   Positioned(
                     // friendily35copy22GLX (176:626)
                     left: 202*fem,
-                    top: 155*fem,
+                    top: 290*fem,
                     child: Align(
                       child: SizedBox(
                         width: 40*fem,
@@ -266,6 +282,7 @@ class Scene extends StatelessWidget {
           ],
         ),
       ),
+      )
           );
   }
 }

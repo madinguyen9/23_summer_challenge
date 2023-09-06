@@ -12,8 +12,16 @@ class Scene extends StatelessWidget {
     double ffem = fem * 0.97;
     return Scaffold(
       appBar: AppBar(
-        title: Text('hey'),
+  title: Text('Image Background AppBar'),
+  flexibleSpace: Container(
+    decoration: BoxDecoration(
+      image: DecorationImage(
+        image: AssetImage('images/friend-ily-29-1-Les.png'),
+        fit: BoxFit.cover,
       ),
+    ),
+  ),
+),
 
     body: Container(
       width: double.infinity,
