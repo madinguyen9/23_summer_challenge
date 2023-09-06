@@ -28,3 +28,4 @@ flutter:
 
   assets:  # Lists assets, such as image files
     - images/
+

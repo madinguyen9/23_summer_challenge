@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/home_page.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_app/utils.dart';
+<<<<<<< Updated upstream
 // import 'package:flutter_app/favorites.dart';
 import 'package:flutter_app/gifts.dart';
+=======
+import 'package:flutter_app/login.dart';
+//import 'package:flutter_app/favorites.dart';
+>>>>>>> Stashed changes
 
 void main() {
   runApp(MyApp());
@@ -14,6 +19,7 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
+<<<<<<< Updated upstream
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter',
@@ -29,6 +35,20 @@ class MyApp extends StatelessWidget {
       ),
     );
     /*return MaterialApp(
+=======
+  Widget build(BuildContextcontext) {
+
+    /*return MaterialApp(
+		title: 'Flutter',
+		debugShowCheckedModeBanner: false,
+		scrollBehavior: MyCustomScrollBehavior(),
+		theme: ThemeData(
+		primarySwatch: Colors.blue,
+		),
+		home: Scene(),
+	);*/
+    return MaterialApp(
+>>>>>>> Stashed changes
       title: 'Flutter',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -36,11 +56,11 @@ class MyApp extends StatelessWidget {
       ),
       home: const LoginPage(),
 
-    );*/
+    );
   }
 }
 
-/*class LoginPage extends StatelessWidget {
+class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
@@ -101,4 +121,4 @@ class MyApp extends StatelessWidget {
     );
 
   }
-}*/
+}
