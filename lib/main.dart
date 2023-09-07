@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/home_page.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_app/utils.dart';
-import 'package:flutter_app/favorites.dart';
+//import 'package:flutter_app/favorites.dart';
 //import 'package:flutter_app/gifts.dart';
 //import 'package:flutter_app/login.dart';
+//import 'package:flutter_app/slider.dart';
+import 'package:flutter_app/onboarding_screen.dart';
 
 
 void main() {
@@ -18,14 +20,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter',
       debugShowCheckedModeBanner: false,
-      scrollBehavior: MyCustomScrollBehavior(),
-      theme: ThemeData(
-        primaryColor: Color(0x00000000),
-      ),
-      home: Scene(),
-        
+      home: OnBoardingScreen(),
+
     );
     /*return MaterialApp(
       title: 'Flutter',
