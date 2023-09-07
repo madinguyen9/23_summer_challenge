@@ -6,9 +6,12 @@ class IntroPage2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.blue,
+      color: Color(0xFFF3EDF1),
       child: Center(
-        child: Text('Page 2'),
+        child: Image.asset(
+          'images/pg_2.png',
+          fit: BoxFit.cover,
+        ),
       )
     );
   }

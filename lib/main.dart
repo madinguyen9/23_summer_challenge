@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/home_page.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_app/utils.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 //import 'package:flutter_app/favorites.dart';
 //import 'package:flutter_app/gifts.dart';
 //import 'package:flutter_app/login.dart';
@@ -21,6 +22,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: createMaterialColor(Color(0xFFF3EDF1)),
+      ),
       home: OnBoardingScreen(),
 
     );

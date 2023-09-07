@@ -10,6 +10,7 @@ class MyCustomScrollBehavior extends MaterialScrollBehavior {
       };
 }
 
+
 MaterialColor createMaterialColor(Color color) {
   List strengths = <double>[.05];
   final swatch = <int, Color>{};

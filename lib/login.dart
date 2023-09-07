@@ -11,14 +11,18 @@ class LoginPage extends StatelessWidget {
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
     return Scaffold(
-      body: Container(
+      body: SingleChildScrollView(
+        
+      child: Container(
+        
       width: double.infinity,
+      
       child: Container(
         // loginsaf (7:103)
         padding: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 8*fem),
         width: double.infinity,
         decoration: BoxDecoration (
-          color: Color(0xfff3edf1),
+          color: Color(0xFFF3EDF1),
           borderRadius: BorderRadius.circular(30*fem),
         ),
         child: Column(
@@ -78,7 +82,7 @@ class LoginPage extends StatelessWidget {
                           Container(
                             // frame5To5 (8:146)
                             margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 20*fem),
-                            padding: EdgeInsets.fromLTRB(10.5*fem, 8*fem, 10.5*fem, 8*fem),
+                            padding: EdgeInsets.fromLTRB(10.5*fem, 2*fem, 10.5*fem, 2*fem),
                             width: double.infinity,
                             decoration: BoxDecoration (
                               color: Color(0x0a000000),
@@ -104,15 +108,19 @@ class LoginPage extends StatelessWidget {
                           Container(
                             // frame4KKV (8:148)
                             margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 20*fem),
-                            padding: EdgeInsets.fromLTRB(10.5*fem, 8*fem, 10.5*fem, 8*fem),
+                            padding: EdgeInsets.fromLTRB(10.5*fem, 2*fem, 10.5*fem, 2*fem),
                             width: double.infinity,
                             decoration: BoxDecoration (
                               color: Color(0x0a000000),
                               borderRadius: BorderRadius.circular(30*fem),
                             ),
-                            child: Text(
-                              '*****',
+                            child: TextField(
+                              decoration: InputDecoration(
+                                hintText: '*******',
+                                ),
+
                               textAlign: TextAlign.center,
+
                               style: SafeGoogleFont (
                                 'Poppins',
                                 fontSize: 17*ffem,
@@ -126,11 +134,7 @@ class LoginPage extends StatelessWidget {
                           ClipRect(
                             // frame3Aqu (8:150)
 
-                            child: BackdropFilter(
-                              filter: ImageFilter.blur (
-                                sigmaX: 30*fem,
-                                sigmaY: 30*fem,
-                              ),
+                           
                               child: Container(
                                 margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 20*fem),
                                 width: double.infinity,
@@ -154,17 +158,9 @@ class LoginPage extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                            ),
+                            
                           ),
-                          Container(
-                            // rectangle15427R (8:152)
-                            margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 20*fem),
-                            width: double.infinity,
-                            height: 1*fem,
-                            decoration: BoxDecoration (
-                              color: Color(0x19000000),
-                            ),
-                          ),
+                          
                           RichText(
                             // alreadyhaveanaccountsigninZ7M (8:153)
                             text: TextSpan(
@@ -282,7 +278,8 @@ class LoginPage extends StatelessWidget {
           ],
         ),
       ),
-      )
+      ),
+    ),
           );
   }
 }

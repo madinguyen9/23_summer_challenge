@@ -6,9 +6,12 @@ class IntroPage3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.yellow,
+      color: Color(0xFFF3EDF1),
       child: Center(
-        child: Text('Page 3'),
+        child: Image.asset(
+          'images/pg_3.png',
+          fit: BoxFit.cover,
+        ),
       )
     );
   }
