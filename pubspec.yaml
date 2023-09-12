@@ -29,7 +29,8 @@ flutter_native_splash:
   android: true
   web: true
   ios: true
-  android_gravity: center
+  android_disable_fullscreen: true
+  ios_content_mode: scaleToFill
 
   flutter_lints: ^2.0.0
 

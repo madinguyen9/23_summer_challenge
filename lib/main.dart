@@ -8,7 +8,9 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 //import 'package:flutter_app/gifts.dart';
 //import 'package:flutter_app/login.dart';
 //import 'package:flutter_app/slider.dart';
-import 'package:flutter_app/onboarding_screen.dart';
+//import 'package:flutter_app/onboarding_screen.dart';
+//import 'package:flutter_app/friend-profile.dart';
+import 'package:flutter_app/splashScreen.dart';
 
 
 void main() {
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: createMaterialColor(Color(0xFFF3EDF1)),
       ),
-      home: OnBoardingScreen(),
+      home: SplashScreen(),
 
     );
     /*return MaterialApp(
