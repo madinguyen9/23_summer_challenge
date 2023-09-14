@@ -3,6 +3,8 @@ import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_app/utils.dart';
+import 'package:flutter_app/favorites.dart';
+import 'package:flutter_app/functionalgifts.dart';
 
 class Scene extends StatelessWidget {
   @override
@@ -12,9 +14,9 @@ class Scene extends StatelessWidget {
     double ffem = fem * 0.97;
     return Scaffold(
       body: SingleChildScrollView(
-        
+
       child: Container(
-        
+
         // friendprofileLj9 (74:395)
         width: double.infinity,
         decoration: BoxDecoration (
@@ -28,7 +30,7 @@ class Scene extends StatelessWidget {
           children: [
             Container(
               // autogroupocyp3tT (4D2mLuEQAbjBCH19troCYP)
-              width: 353*fem,
+              width: 390*fem,
               height: 946*fem,
               child: Stack(
                 children: [
@@ -103,18 +105,40 @@ class Scene extends StatelessWidget {
                     // homeEYw (74:418)
                     left: 324*fem,
                     top: 78*fem,
+                    child: GestureDetector(
+                          onTap: () {
+                            // navigate to the desired page
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Favorites()),
+                            );
+                        },
                     child: Align(
-                      child: SizedBox(
-                        width: 18*fem,
-                        height: 20*fem,
-                        child: Image.asset(
-                          'images/home.png',
+                      alignment: Alignment.center,
+          
+                    child: Container(
+                      margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 20*fem),
+                      width: 42*fem,  // make it same as height for a perfect circle
+                      height: 42*fem,
+                      decoration: BoxDecoration(
+                        color: Color(0xfff3edf1),
+                        borderRadius: BorderRadius.circular(21*fem),  // half of width or height
+                      ),
+                      child: Center(  // Center the child widget
+                        child: SizedBox(
                           width: 18*fem,
                           height: 20*fem,
+                          child: Image.asset(
+                            'images/home.png',
+                            width: 18*fem,
+                            height: 20*fem,
+                          ),
                         ),
                       ),
                     ),
                   ),
+                    ),
+                ),
                   Positioned(
                     // diamondfillLby (92:157)
                     left: 29.16015625*fem,
@@ -284,6 +308,14 @@ class Scene extends StatelessWidget {
                     top: 494.5*fem,
                     child: Center(
                       child: Align(
+                        child: GestureDetector(
+                          onTap: () {
+                            // navigate to the desired page
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Favorites()),
+                            );
+                        },
                         child: SizedBox(
                           width: 107*fem,
                           height: 50*fem,
@@ -302,12 +334,21 @@ class Scene extends StatelessWidget {
                       ),
                     ),
                   ),
+                  ),
                   Positioned(
                     // futureplansA95 (96:196)
                     left: 116*fem,
                     top: 592*fem,
                     child: Center(
                       child: Align(
+                        child: GestureDetector(
+                          onTap: () {
+                            // navigate to the desired page
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Gifts()),
+                            );
+                          },
                         child: SizedBox(
                           width: 145*fem,
                           height: 50*fem,
@@ -326,12 +367,21 @@ class Scene extends StatelessWidget {
                       ),
                     ),
                   ),
+                  ),
                   Positioned(
                     // giftideasScP (96:197)
                     left: 116*fem,
                     top: 684*fem,
                     child: Center(
                       child: Align(
+                        child: GestureDetector(
+                          onTap: () {
+                            // navigate to the desired page
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Gifts()),
+                            );
+                          },
                         child: SizedBox(
                           width: 114*fem,
                           height: 50*fem,
@@ -349,6 +399,7 @@ class Scene extends StatelessWidget {
                         ),
                       ),
                     ),
+                  ),
                   ),
                   Positioned(
                     // calendarXdq (96:198)
@@ -579,12 +630,7 @@ class Scene extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              // pentagonfillKmy (92:152)
-              margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 26*fem, 161*fem),
-              width: 11*fem,
-              height: 50*fem,
-            ),
+
           ],
         ),
       ),

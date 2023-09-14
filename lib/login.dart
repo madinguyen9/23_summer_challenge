@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_app/utils.dart';
+import 'package:flutter_app/friend-profile.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -134,7 +135,14 @@ class LoginPage extends StatelessWidget {
                           ClipRect(
                             // frame3Aqu (8:150)
 
-                           
+                           child: GestureDetector(
+                                  onTap: () {
+                                    // navigate to the desired page
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => Scene()),
+                                    );
+                                },
                               child: Container(
                                 margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 20*fem),
                                 width: double.infinity,
@@ -143,9 +151,10 @@ class LoginPage extends StatelessWidget {
                                   color: Color(0xffe197b1),
                                   borderRadius: BorderRadius.circular(30*fem),
                                 ),
+                                
                                 child: Center(
                                   child: Text(
-                                    'Create account',
+                                    'Sign In',
                                     textAlign: TextAlign.center,
                                     style: SafeGoogleFont (
                                       'Poppins',
@@ -157,8 +166,9 @@ class LoginPage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
+                              
                               ),
-                            
+                           ),
                           ),
                           
                           RichText(
@@ -174,7 +184,7 @@ class LoginPage extends StatelessWidget {
                               ),
                               children: [
                                 TextSpan(
-                                  text: 'Already have an account? ',
+                                  text: 'Don\'t have an account yet? ',
                                   style: SafeGoogleFont (
                                     'Poppins',
                                     fontSize: 13*ffem,
@@ -185,7 +195,7 @@ class LoginPage extends StatelessWidget {
                                   ),
                                 ),
                                 TextSpan(
-                                  text: 'Sign in',
+                                  text: 'Sign Up ',
                                   style: SafeGoogleFont (
                                     'Poppins',
                                     fontSize: 13*ffem,

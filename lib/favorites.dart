@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_app/utils.dart';
 
-class Scene extends StatelessWidget {
+class Favorites extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double baseWidth = 390;
@@ -43,11 +43,14 @@ class Scene extends StatelessWidget {
                 child: SizedBox(
                   width: 511*fem,
                   height: 474*fem,
+                  child: Opacity(
+                          opacity: 0.5,  
                   child: Image.asset(
                     'images/friend-ily-29-1-Les.png',
                     //flower background image ^
                     fit: BoxFit.cover,
                   ),
+                ),
                 ),
               ),
             ),
