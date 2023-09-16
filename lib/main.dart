@@ -11,7 +11,8 @@ import 'package:flutter_app/plans.dart';
 //import 'package:flutter_app/onboarding_screen.dart';
 import 'package:flutter_app/friend-profile.dart';
 //import 'package:flutter_app/splashScreen.dart';
-//import 'package:flutter_app/home_page.dart';
+import 'package:flutter_app/home_page.dart';
+import 'package:flutter_app/functionalgifts.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: createMaterialColor(Color(0xFFF3EDF1)),
       ),
-      home: Plans(),
+      home: Scene(),
     );
     /*return MaterialApp(
       title: 'Flutter',

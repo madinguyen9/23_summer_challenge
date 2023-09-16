@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_app/utils.dart';
 import 'package:flutter_app/favorites.dart';
 import 'package:flutter_app/functionalgifts.dart';
+import 'package:flutter_app/plans.dart';
 
 class Scene extends StatelessWidget {
   @override
@@ -346,7 +347,7 @@ class Scene extends StatelessWidget {
                             // navigate to the desired page
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => Gifts()),
+                              MaterialPageRoute(builder: (context) => Plans()),
                             );
                           },
                         child: SizedBox(
