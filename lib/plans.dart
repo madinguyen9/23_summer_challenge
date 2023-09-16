@@ -7,14 +7,14 @@ import 'package:flutter_app/utils.dart';
 
 import '../model/checkbox.dart';
 
-class Gifts extends StatefulWidget {
+class Plans extends StatefulWidget {
   @override
-  State<Gifts> createState() => _GiftsState();
+  State<Plans> createState() => _PlansState();
 }
 
-class _GiftsState extends State<Gifts> {
-  final giftList = CheckBox.BoxList();
-  final _giftController = TextEditingController();
+class _PlansState extends State<Plans> {
+  final planList = CheckBox.BoxList();
+  final _planController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     double baseWidth = 390;
@@ -24,7 +24,7 @@ class _GiftsState extends State<Gifts> {
       appBar: AppBar(
           title: Center(
         child: Text(
-          'ananya gift ideas',
+          "plans for ananya",
           textAlign: TextAlign.center,
           style: SafeGoogleFont(
             'Single Day',
@@ -43,11 +43,11 @@ class _GiftsState extends State<Gifts> {
                 Expanded(
                   child: ListView(
                     children: [
-                      for (CheckBox gift in giftList)
+                      for (CheckBox plan in planList)
                         CheckBoxItem(
-                          box: gift,
+                          box: plan,
                           onBoxChanged: _handleToDoChange,
-                          onDeleteItem: _deleteGift,
+                          onDeleteItem: _deletePlan,
                         ),
                     ],
                   ),
@@ -81,9 +81,9 @@ class _GiftsState extends State<Gifts> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: TextField(
-                    controller: _giftController,
+                    controller: _planController,
                     decoration: InputDecoration(
-                        hintText: 'Add new gift', border: InputBorder.none),
+                        hintText: 'Add new plan', border: InputBorder.none),
                   ),
                 ),
               ),
@@ -101,7 +101,7 @@ class _GiftsState extends State<Gifts> {
                       ),
                     ),
                     onPressed: () {
-                      _addGift(_giftController.text);
+                      _addPlan(_planController.text);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: fyLightPink,
@@ -122,17 +122,17 @@ class _GiftsState extends State<Gifts> {
     });
   }
 
-  void _deleteGift(String id) {
+  void _deletePlan(String id) {
     setState(() {
-      giftList.removeWhere((item) => item.id == id);
+      planList.removeWhere((item) => item.id == id);
     });
   }
 
-  void _addGift(String gift) {
-    giftList.add(CheckBox(
+  void _addPlan(String plan) {
+    planList.add(CheckBox(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
-      Text: gift,
+      Text: plan,
     ));
-    _giftController.clear();
+    _planController.clear();
   }
 }
