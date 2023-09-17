@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_app/utils.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 //import 'package:flutter_app/favorites.dart';
-import 'package:flutter_app/plans.dart';
+import 'package:flutter_app/functionalfavorites.dart';
 //import 'package:flutter_app/login.dart';
 //import 'package:flutter_app/slider.dart';
 //import 'package:flutter_app/onboarding_screen.dart';

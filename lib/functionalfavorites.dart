@@ -1,20 +1,20 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/colors.dart';
-import 'package:flutter_app/widgets/checkbox_item.dart';
+import '../widgets/favorites_item';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_app/utils.dart';
 
-import '../model/checkbox.dart';
+import '../model/fav_model.dart';
 
-class Plans extends StatefulWidget {
+class Favorites extends StatefulWidget {
   @override
-  State<Plans> createState() => _PlansState();
+  State<Favorites> createState() => _FavoritesState();
 }
 
-class _PlansState extends State<Plans> {
-  final planList = CheckBox.BoxList();
-  final _planController = TextEditingController();
+class _FavoritesState extends State<Favorites> {
+  final favList = Favorite.FavList();
+  final _favController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     double baseWidth = 390;
@@ -22,20 +22,19 @@ class _PlansState extends State<Plans> {
     double ffem = fem * 0.97;
     return Scaffold(
       appBar: AppBar(
-          leading: BackButton(),
-          title: Center(
-            child: Text(
-              "plans for ananya",
-              textAlign: TextAlign.center,
-              style: SafeGoogleFont(
-                'Single Day',
-                fontSize: 34 * ffem,
-                fontWeight: FontWeight.w400,
-                height: 1.4705882353 * ffem / fem,
-                color: Color(0xffe197b1),
-              ),
-            ),
-          )),
+        leading: BackButton(),
+        title: Text(
+          "ananya's favorites",
+          textAlign: TextAlign.center,
+          style: SafeGoogleFont(
+            'Single Day',
+            fontSize: 34 * ffem,
+            fontWeight: FontWeight.w400,
+            height: 1.4705882353 * ffem / fem,
+            color: Color(0xffe197b1),
+          ),
+        ),
+      ),
       body: Stack(
         children: [
           Container(
@@ -44,11 +43,11 @@ class _PlansState extends State<Plans> {
                 Expanded(
                   child: ListView(
                     children: [
-                      for (CheckBox plan in planList)
-                        CheckBoxItem(
-                          box: plan,
+                      for (Favorite fav in favList)
+                        FavoritesItem(
+                          fave: fav,
                           onBoxChanged: _handleToDoChange,
-                          onDeleteItem: _deletePlan,
+                          onDeleteItem: _deleteFav,
                         ),
                     ],
                   ),
@@ -82,9 +81,9 @@ class _PlansState extends State<Plans> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: TextField(
-                    controller: _planController,
+                    controller: _favController,
                     decoration: InputDecoration(
-                        hintText: 'Add new plan', border: InputBorder.none),
+                        hintText: 'Add new favorite', border: InputBorder.none),
                   ),
                 ),
               ),
@@ -102,7 +101,7 @@ class _PlansState extends State<Plans> {
                       ),
                     ),
                     onPressed: () {
-                      _addPlan(_planController.text);
+                      _addFav(_favController.text);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: fyLightPink,
@@ -117,23 +116,25 @@ class _PlansState extends State<Plans> {
     );
   }
 
-  void _handleToDoChange(CheckBox box) {
+  void _handleToDoChange(Favorite box) {
     setState(() {
       box.isDone = !box.isDone;
     });
   }
 
-  void _deletePlan(String id) {
+  void _deleteFav(String id) {
     setState(() {
-      planList.removeWhere((item) => item.id == id);
+      favList.removeWhere((item) => item.id == id);
     });
   }
 
-  void _addPlan(String plan) {
-    planList.add(CheckBox(
-      id: DateTime.now().millisecondsSinceEpoch.toString(),
-      Text: plan,
-    ));
-    _planController.clear();
+  void _addFav(String fav) {
+    setState(() {
+      favList.add(Favorite(
+        id: DateTime.now().millisecondsSinceEpoch.toString(),
+        Text: fav,
+      ));
+      _favController.clear();
+    });
   }
 }

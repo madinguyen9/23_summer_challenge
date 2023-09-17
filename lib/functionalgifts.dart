@@ -24,19 +24,20 @@ class _GiftsState extends State<Gifts> {
     double ffem = fem * 0.97;
     return Scaffold(
       appBar: AppBar(
+          leading: BackButton(),
           title: Center(
-        child: Text(
-          'ananya gift ideas',
-          textAlign: TextAlign.center,
-          style: SafeGoogleFont(
-            'Single Day',
-            fontSize: 34 * ffem,
-            fontWeight: FontWeight.w400,
-            height: 1.4705882353 * ffem / fem,
-            color: Color(0xffe197b1),
-          ),
-        ),
-      )),
+            child: Text(
+              'ananya gift ideas',
+              textAlign: TextAlign.center,
+              style: SafeGoogleFont(
+                'Single Day',
+                fontSize: 34 * ffem,
+                fontWeight: FontWeight.w400,
+                height: 1.4705882353 * ffem / fem,
+                color: Color(0xffe197b1),
+              ),
+            ),
+          )),
       body: Stack(
         children: [
           Container(
@@ -169,11 +170,13 @@ class _GiftsState extends State<Gifts> {
   }
 
   void _addGift(String gift) {
-    giftList.add(CheckBox(
-      id: DateTime.now().millisecondsSinceEpoch.toString(),
-      Text: gift,
-    ));
-    _giftController.clear();
+    setState(() {
+      giftList.add(CheckBox(
+        id: DateTime.now().millisecondsSinceEpoch.toString(),
+        Text: gift,
+      ));
+      _giftController.clear();
+    });
   }
       Future<String> getGiftIdea(List<CheckBox> gifts) async {
     var url = Uri.parse('https://api.openai.com/v1/engines/davinci/completions');
