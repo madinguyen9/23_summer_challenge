@@ -1,6 +1,7 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/home_page.dart';
+import 'package:flutter_app/splashScreen.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_app/utils.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: createMaterialColor(Color(0xFFF3EDF1)),
       ),
-      home: Scene(),
+      home: SplashScreen(),
     );
     /*return MaterialApp(
       title: 'Flutter',

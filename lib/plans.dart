@@ -4,8 +4,11 @@ import 'package:flutter_app/constants/colors.dart';
 import 'package:flutter_app/widgets/checkbox_item.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_app/utils.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 import '../model/checkbox.dart';
+
 
 class Plans extends StatefulWidget {
   @override
@@ -13,7 +16,7 @@ class Plans extends StatefulWidget {
 }
 
 class _PlansState extends State<Plans> {
-  final planList = CheckBox.BoxList();
+  final planList = CheckBox.PlanList();
   final _planController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -88,10 +91,43 @@ class _PlansState extends State<Plans> {
                   ),
                 ),
               ),
-              Container(
+              Row(
+              children: [
+                Container(
                   margin: EdgeInsets.only(
                     bottom: 20,
                     right: 20,
+                  ),
+                  child: ElevatedButton(
+                    child: Text(
+                      '?',
+                      style: TextStyle(
+                        fontSize: 35,
+                        color: Colors.white,
+                      ),
+                    ),
+                    onPressed: () async {
+                      try {
+                        String newGiftIdea = await getPlanIdea(planList);
+                        _addPlan(newGiftIdea);
+                      } catch (e) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Failed to generate a gift idea. Please try again.'))
+                        );
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: fyLightPink,
+                      minimumSize: Size(60, 60),
+                      elevation: 10,
+                    ),
+
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(
+                    bottom: 20,
+                    right: 10,
                   ),
                   child: ElevatedButton(
                     child: Text(
@@ -109,7 +145,13 @@ class _PlansState extends State<Plans> {
                       minimumSize: Size(60, 60),
                       elevation: 10,
                     ),
-                  )),
+                  ),
+                ),
+
+              ],
+            ),
+
+            
             ]),
           ),
         ],
@@ -136,4 +178,29 @@ class _PlansState extends State<Plans> {
     ));
     _planController.clear();
   }
+
+  Future<String> getPlanIdea(List<CheckBox> plans) async {
+    var url = Uri.parse('https://api.openai.com/v1/engines/davinci/completions');
+
+    var response = await http.post(url,
+        headers: {
+          'Authorization': 'Bearer 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',
+          'Content-Type': 'application/json',
+        },
+        body: json.encode({
+          'prompt':
+              'Based on the following plan ideas: ${plans.map((e) => e.Text).join(", ")}. Generate a new plan idea:',
+          'max_tokens': 100
+        }));
+
+    if (response.statusCode == 200) {
+      var data = json.decode(response.body);
+      return data['choices'][0]['text'].trim();
+    } else {
+      print(response.body);
+      throw Exception('Failed to load plan idea from OpenAI');
+    }
+  }
+
+
 }
