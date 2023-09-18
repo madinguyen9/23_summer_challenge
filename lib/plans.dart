@@ -130,10 +130,12 @@ class _PlansState extends State<Plans> {
   }
 
   void _addPlan(String plan) {
-    planList.add(CheckBox(
-      id: DateTime.now().millisecondsSinceEpoch.toString(),
-      Text: plan,
-    ));
-    _planController.clear();
+    setState(() {
+      planList.add(CheckBox(
+        id: DateTime.now().millisecondsSinceEpoch.toString(),
+        Text: plan,
+      ));
+      _planController.clear();
+    });
   }
 }
