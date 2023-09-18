@@ -42,14 +42,17 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            buildSearchInput(textarea),
+            // buildSearchInput(textarea),
             // SizedBox(
             //   height: 20,
             // ),
             //Text('Hello'),
+            buildSearchInput(textarea),
             Expanded(
+              flex: 1,
               child: ListView(
                 scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.only(top: 0.0, bottom: 0),
                 // This next line does the trick.
                 children: [
                   Row(
@@ -229,13 +232,11 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            SizedBox(
-              height: 20,
-            ),
             Expanded(
+              flex: 6,
               child: GridView.count(
                 crossAxisCount: 2,
-                children: List.generate(100, (index) {
+                children: List.generate(10, (index) {
                   return Center(
                     child: Text(
                       'Item $index',
