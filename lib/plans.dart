@@ -9,7 +9,6 @@ import 'package:http/http.dart' as http;
 
 import '../model/checkbox.dart';
 
-
 class Plans extends StatefulWidget {
   @override
   State<Plans> createState() => _PlansState();
@@ -117,66 +116,62 @@ class _PlansState extends State<Plans> {
                 ),
               ),
               Row(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(
-                    bottom: 20,
-                    right: 20,
-                  ),
-                  child: ElevatedButton(
-                    child: Text(
-                      '?',
-                      style: TextStyle(
-                        fontSize: 35,
-                        color: Colors.white,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(
+                      bottom: 20,
+                      right: 20,
+                    ),
+                    child: ElevatedButton(
+                      child: Text(
+                        '?',
+                        style: TextStyle(
+                          fontSize: 35,
+                          color: Colors.white,
+                        ),
+                      ),
+                      onPressed: () async {
+                        try {
+                          String newGiftIdea = await getPlanIdea(planList);
+                          _addPlan(newGiftIdea);
+                        } catch (e) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text(
+                                  'Failed to generate a gift idea. Please try again.')));
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: fyLightPink,
+                        minimumSize: Size(60, 60),
+                        elevation: 10,
                       ),
                     ),
-                    onPressed: () async {
-                      try {
-                        String newGiftIdea = await getPlanIdea(planList);
-                        _addPlan(newGiftIdea);
-                      } catch (e) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Failed to generate a gift idea. Please try again.'))
-                        );
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: fyLightPink,
-                      minimumSize: Size(60, 60),
-                      elevation: 10,
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(
+                      bottom: 20,
+                      right: 10,
                     ),
-
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(
-                    bottom: 20,
-                    right: 10,
-                  ),
-                  child: ElevatedButton(
-                    child: Text(
-                      '+',
-                      style: TextStyle(
-                        fontSize: 40,
-                        color: Colors.white,
+                    child: ElevatedButton(
+                      child: Text(
+                        '+',
+                        style: TextStyle(
+                          fontSize: 40,
+                          color: Colors.white,
+                        ),
+                      ),
+                      onPressed: () {
+                        _addPlan(_planController.text);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: fyLightPink,
+                        minimumSize: Size(60, 60),
+                        elevation: 10,
                       ),
                     ),
-                    onPressed: () {
-                      _addPlan(_planController.text);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: fyLightPink,
-                      minimumSize: Size(60, 60),
-                      elevation: 10,
-                    ),
                   ),
-                ),
-
-              ],
-            ),
-
-            
+                ],
+              ),
             ]),
           ),
         ],
@@ -207,11 +202,13 @@ class _PlansState extends State<Plans> {
   }
 
   Future<String> getPlanIdea(List<CheckBox> plans) async {
-    var url = Uri.parse('https://api.openai.com/v1/engines/davinci/completions');
+    var url =
+        Uri.parse('https://api.openai.com/v1/engines/davinci/completions');
 
     var response = await http.post(url,
         headers: {
-          'Authorization': 'Bearer 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',
+          'Authorization':
+              'Bearer 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',
           'Content-Type': 'application/json',
         },
         body: json.encode({
@@ -228,6 +225,4 @@ class _PlansState extends State<Plans> {
       throw Exception('Failed to load plan idea from OpenAI');
     }
   }
-
-
 }
