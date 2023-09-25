@@ -5,7 +5,7 @@ import 'package:flutter_app/utils.dart';
 class Friend {
   String name;
   String file;
-  bool isFav = true;
+  bool isFav;
   int category = 0; //all
 
   void setFav(bool fav) {
@@ -27,18 +27,17 @@ class _HomePageState extends State<HomePage> {
   bool isPressed = true;
   int btnPressed = 1;
   List<Friend> friends = [
-    Friend("Ananya", "ellipse-223-bg.png", true),
+    Friend("Ananya", "ananyaProfile.png", true),
     Friend("Connor", "connorProfile.png", true),
     Friend("Mubashir", "mubashirProfile.png", false),
     Friend("Shiv", "shivProfile.png", false),
     Friend("Afra", "afraProfile.png", true),
     Friend("Jalen", "jalenProfile.png", false),
     Friend("Kavitha", "kavithaProfile.png", true),
-    Friend("Gwen", "gwenProfile.png", false),
+    Friend("Gwen", "gwenProfile.jpg", true),
     Friend("Jordan", "jordanProfile.png", false),
     Friend("Riley", "rileyProfile.png", false),
     Friend("Andrew", "andrewProfile.png", false),
-    Friend("Shiv", "shivProfile.png", false),
     Friend("Samhita", "samhitaProfile.png", false),
     Friend("Amanda", "amandaProfile.png", true),
   ];
@@ -223,6 +222,7 @@ class _HomePageState extends State<HomePage> {
             // Expanded(
             //     child: ListView(
             //         scrollDirection: Axis.vertical, children: <Widget>[Row()]))
+            IconButton(onPressed: () {}, icon: Icon(Icons.add)),
           ],
         ),
       ),
@@ -285,7 +285,7 @@ Widget buildSearchInput(TextEditingController c) => Container(
             Icon(
               Icons.search,
               size: 30,
-              color: Colors.grey.shade300,
+              color: Color.fromARGB(255, 181, 180, 180),
             ),
             Flexible(
               child: TextFormField(
