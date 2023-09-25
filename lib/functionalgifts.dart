@@ -23,21 +23,46 @@ class _GiftsState extends State<Gifts> {
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
     return Scaffold(
-      appBar: AppBar(
-          leading: BackButton(),
-          title: Center(
-            child: Text(
-              'ananya gift ideas',
-              textAlign: TextAlign.center,
-              style: SafeGoogleFont(
-                'Single Day',
-                fontSize: 34 * ffem,
-                fontWeight: FontWeight.w400,
-                height: 1.4705882353 * ffem / fem,
-                color: Color(0xffe197b1),
+      appBar: PreferredSize(
+  preferredSize: Size.fromHeight(200.0),
+  child: AppBar(
+    flexibleSpace: Stack(
+      fit: StackFit.expand,
+      children: [
+        Opacity(
+          opacity: 0.4,  // Adjust the transparency as needed
+          child: Image.asset(
+            'images/friend-ily-29-1-Les.png',
+            fit: BoxFit.cover,
+          ),
+        ),
+        Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "gifts for ananya",
+                textAlign: TextAlign.center,
+                style: SafeGoogleFont(
+                  'Single Day',
+                  fontSize: 34 * ffem,
+                  fontWeight: FontWeight.w400,
+                  height: 1.4705882353 * ffem / fem,
+                  color: Color(0xffe197b1),
+                ),
               ),
-            ),
-          )),
+            ],
+          ),
+        ),
+      ],
+    ),
+    leading: BackButton(),
+    title: null, // No need for title here as it's included inside the Stack
+    backgroundColor: Colors.transparent,  // To make AppBar transparent
+    elevation: 0,  // To remove shadow from AppBar
+  ),
+),
+
       body: Stack(
         children: [
           Container(
@@ -99,9 +124,9 @@ class _GiftsState extends State<Gifts> {
                   ),
                   child: ElevatedButton(
                     child: Text(
-                      'API',
+                      '?',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 35,
                         color: Colors.white,
                       ),
                     ),
@@ -120,7 +145,7 @@ class _GiftsState extends State<Gifts> {
                       minimumSize: Size(60, 60),
                       elevation: 10,
                     ),
-                    
+
                   ),
                 ),
                 Container(
@@ -183,7 +208,7 @@ class _GiftsState extends State<Gifts> {
 
     var response = await http.post(url,
         headers: {
-          'Authorization': 'Bearer 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',
+          'Authorization': 'Bearer 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',
           'Content-Type': 'application/json',
         },
         body: json.encode({

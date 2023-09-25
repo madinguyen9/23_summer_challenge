@@ -4,6 +4,8 @@ import 'package:flutter_app/constants/colors.dart';
 import 'package:flutter_app/widgets/checkbox_item.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_app/utils.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 import '../model/checkbox.dart';
 
@@ -13,7 +15,7 @@ class Plans extends StatefulWidget {
 }
 
 class _PlansState extends State<Plans> {
-  final planList = CheckBox.BoxList();
+  final planList = CheckBox.PlanList();
   final _planController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -21,21 +23,46 @@ class _PlansState extends State<Plans> {
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
     return Scaffold(
-      appBar: AppBar(
-          leading: BackButton(),
-          title: Center(
-            child: Text(
-              "plans for ananya",
-              textAlign: TextAlign.center,
-              style: SafeGoogleFont(
-                'Single Day',
-                fontSize: 34 * ffem,
-                fontWeight: FontWeight.w400,
-                height: 1.4705882353 * ffem / fem,
-                color: Color(0xffe197b1),
+      appBar: PreferredSize(
+  preferredSize: Size.fromHeight(200.0),
+  child: AppBar(
+    flexibleSpace: Stack(
+      fit: StackFit.expand,
+      children: [
+        Opacity(
+          opacity: 0.4,  // Adjust the transparency as needed
+          child: Image.asset(
+            'images/friend-ily-29-1-Les.png',
+            fit: BoxFit.cover,
+          ),
+        ),
+        Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "plans for ananya",
+                textAlign: TextAlign.center,
+                style: SafeGoogleFont(
+                  'Single Day',
+                  fontSize: 34 * ffem,
+                  fontWeight: FontWeight.w400,
+                  height: 1.4705882353 * ffem / fem,
+                  color: Color(0xffe197b1),
+                ),
               ),
-            ),
-          )),
+            ],
+          ),
+        ),
+      ],
+    ),
+    leading: BackButton(),
+    title: null, // No need for title here as it's included inside the Stack
+    backgroundColor: Colors.transparent,  // To make AppBar transparent
+    elevation: 0,  // To remove shadow from AppBar
+  ),
+),
+
       body: Stack(
         children: [
           Container(
@@ -88,28 +115,63 @@ class _PlansState extends State<Plans> {
                   ),
                 ),
               ),
-              Container(
-                  margin: EdgeInsets.only(
-                    bottom: 20,
-                    right: 20,
-                  ),
-                  child: ElevatedButton(
-                    child: Text(
-                      '+',
-                      style: TextStyle(
-                        fontSize: 40,
-                        color: Colors.white,
+              Row(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(
+                      bottom: 20,
+                      right: 20,
+                    ),
+                    child: ElevatedButton(
+                      child: Text(
+                        '?',
+                        style: TextStyle(
+                          fontSize: 35,
+                          color: Colors.white,
+                        ),
+                      ),
+                      onPressed: () async {
+                        try {
+                          String newGiftIdea = await getPlanIdea(planList);
+                          _addPlan(newGiftIdea);
+                        } catch (e) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text(
+                                  'Failed to generate a gift idea. Please try again.')));
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: fyLightPink,
+                        minimumSize: Size(60, 60),
+                        elevation: 10,
                       ),
                     ),
-                    onPressed: () {
-                      _addPlan(_planController.text);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: fyLightPink,
-                      minimumSize: Size(60, 60),
-                      elevation: 10,
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(
+                      bottom: 20,
+                      right: 10,
                     ),
-                  )),
+                    child: ElevatedButton(
+                      child: Text(
+                        '+',
+                        style: TextStyle(
+                          fontSize: 40,
+                          color: Colors.white,
+                        ),
+                      ),
+                      onPressed: () {
+                        _addPlan(_planController.text);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: fyLightPink,
+                        minimumSize: Size(60, 60),
+                        elevation: 10,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ]),
           ),
         ],
@@ -137,5 +199,30 @@ class _PlansState extends State<Plans> {
       ));
       _planController.clear();
     });
+  }
+
+  Future<String> getPlanIdea(List<CheckBox> plans) async {
+    var url =
+        Uri.parse('https://api.openai.com/v1/engines/davinci/completions');
+
+    var response = await http.post(url,
+        headers: {
+          'Authorization':
+              'Bearer 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',
+          'Content-Type': 'application/json',
+        },
+        body: json.encode({
+          'prompt':
+              'Based on the following plan ideas: ${plans.map((e) => e.Text).join(", ")}. Generate a new plan idea:',
+          'max_tokens': 100
+        }));
+
+    if (response.statusCode == 200) {
+      var data = json.decode(response.body);
+      return data['choices'][0]['text'].trim();
+    } else {
+      print(response.body);
+      throw Exception('Failed to load plan idea from OpenAI');
+    }
   }
 }

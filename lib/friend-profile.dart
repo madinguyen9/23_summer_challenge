@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter_app/home_page.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_app/utils.dart';
-import 'package:flutter_app/favorites.dart';
+import 'package:flutter_app/functionalfavorites.dart';
 import 'package:flutter_app/functionalgifts.dart';
 import 'package:flutter_app/plans.dart';
 
@@ -111,7 +112,7 @@ class Scene extends StatelessWidget {
                             // navigate to the desired page
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => Favorites()),
+                              MaterialPageRoute(builder: (context) => HomePage()),
                             );
                         },
                     child: Align(
