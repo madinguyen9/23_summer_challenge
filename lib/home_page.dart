@@ -222,7 +222,13 @@ class _HomePageState extends State<HomePage> {
             // Expanded(
             //     child: ListView(
             //         scrollDirection: Axis.vertical, children: <Widget>[Row()]))
-            IconButton(onPressed: () {}, icon: Icon(Icons.add)),
+            Align(
+                alignment: Alignment.topRight,
+                child: IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.add_circle),
+                    color: Colors.pink,
+                    iconSize: 30)),
           ],
         ),
       ),
