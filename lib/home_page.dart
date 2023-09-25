@@ -2,6 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_app/utils.dart';
 
+class Friend {
+  String name;
+  String file;
+  bool isFav = true;
+  int category = 0; //all
+
+  void setFav(bool fav) {
+    isFav = fav;
+  }
+
+  Friend(this.name, this.file, this.isFav);
+}
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -13,10 +26,26 @@ class _HomePageState extends State<HomePage> {
   TextEditingController textarea = TextEditingController();
   bool isPressed = true;
   int btnPressed = 1;
+  List<Friend> friends = [
+    Friend("Ananya", "ellipse-223-bg.png", true),
+    Friend("Connor", "connorProfile.png", true),
+    Friend("Mubashir", "mubashirProfile.png", false),
+    Friend("Shiv", "shivProfile.png", false),
+    Friend("Afra", "afraProfile.png", true),
+    Friend("Jalen", "jalenProfile.png", false),
+    Friend("Kavitha", "kavithaProfile.png", true),
+    Friend("Gwen", "gwenProfile.png", false),
+    Friend("Jordan", "jordanProfile.png", false),
+    Friend("Riley", "rileyProfile.png", false),
+    Friend("Andrew", "andrewProfile.png", false),
+    Friend("Shiv", "shivProfile.png", false),
+    Friend("Samhita", "samhitaProfile.png", false),
+    Friend("Amanda", "amandaProfile.png", true),
+  ];
 
   @override
   void initState() {
-    textarea.text = "Search"; //default text
+    textarea.text = ""; //default text
     super.initState();
   }
 
@@ -171,67 +200,10 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ],
                   ),
-
-                  /*
-                  Container(
-                      height: 50,
-                      child: ListView(
-                          scrollDirection: Axis.horizontal,
-                          children: [
-                            'All',
-                            'Favorites',
-                            'Besties',
-                            'Family',
-                            'School',
-                            'Work',
-                            'Extra'
-                          ]
-                              .map((
-                                e,
-                              ) =>
-                                  Container(
-                                      margin: EdgeInsets.symmetric(
-                                        vertical: 8.0,
-                                        horizontal: 8.0,
-                                      ),
-                                      child: TextButton(
-                                        onPressed: () => {
-                                          print(e + ' got clicked!'),
-                                          setState(() {
-                                            isPressed = !isPressed;
-                                          }),
-                                        },
-                                        child: Text(
-                                          e,
-                                          style: TextStyle(
-                                            fontSize: 18,
-                                            color: isPressed
-                                                ? Colors.black
-                                                : Colors.pink,
-                                          ),
-                                          textAlign: TextAlign.left,
-                                        ),
-                                      )
-
-                                      /*
-                                    ElevatedButton(
-                                      onPressed: () {},
-                                      // style: ButtonStyle(elevation: MaterialStateProperty(12.0 )),
-                                      style: ElevatedButton.styleFrom(
-                                          elevation: 12.0,
-                                          textStyle: const TextStyle(
-                                              fontSize: 18,
-                                              color: Colors.black)),
-                                      child: Text(e),
-                                    ),
-                                    */
-
-                                      ))
-                              .toList()))
-                              */
                 ],
               ),
             ),
+            /*
             Expanded(
               flex: 6,
               child: GridView.count(
@@ -246,6 +218,8 @@ class _HomePageState extends State<HomePage> {
                 }),
               ),
             )
+            */
+            buildLayoutScreen(context, friends),
             // Expanded(
             //     child: ListView(
             //         scrollDirection: Axis.vertical, children: <Widget>[Row()]))
@@ -257,48 +231,6 @@ class _HomePageState extends State<HomePage> {
 }
 
 /*
-class ScrollBar extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(),
-        body: Container(
-          margin: const EdgeInsets.symmetric(vertical: 20),
-          height: 200,
-          child: ListView(
-            // This next line does the trick.
-            scrollDirection: Axis.horizontal,
-            children: <Widget>[
-              Container(
-                width: 160,
-                color: Colors.red,
-              ),
-              Container(
-                width: 160,
-                color: Colors.blue,
-              ),
-              Container(
-                width: 160,
-                color: Colors.green,
-              ),
-              Container(
-                width: 160,
-                color: Colors.yellow,
-              ),
-              Container(
-                width: 160,
-                color: Colors.orange,
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-*/
-
 Widget buildHorizList() => ListView(
       // This next line does the trick.
       scrollDirection: Axis.horizontal,
@@ -328,6 +260,7 @@ Widget buildHorizList() => ListView(
         ),
       ],
     );
+    */
 
 Widget buildSearchInput(TextEditingController c) => Container(
       decoration: BoxDecoration(
@@ -363,5 +296,112 @@ Widget buildSearchInput(TextEditingController c) => Container(
             ),
           ],
         ),
+      ),
+    );
+
+Widget buildLayoutScreen(BuildContext context, List<Friend> friends) =>
+    Expanded(
+      flex: 7,
+      child: GridView.builder(
+        itemCount: friends.length,
+        itemBuilder: (context, index) => buildImageCard(index, friends[index]),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          mainAxisSpacing: 8,
+          crossAxisSpacing: 8,
+        ),
+      ),
+    );
+
+Widget buildImageCard(int index, Friend friend) => Card(
+      clipBehavior: Clip.antiAlias,
+      margin: EdgeInsets.zero,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: GestureDetector(
+        /*
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => AlbumScreen(artist: artist),
+          ),
+        ),
+        */
+
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Expanded(
+                child: Container(
+                  /*
+                  foregroundDecoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.transparent,
+                        Color.fromARGB(71, 0, 0, 0),
+                      ],
+                      begin: Alignment.center,
+                      end: Alignment.bottomCenter,
+                      stops: [0, 0.5],
+                    ),
+                  ),
+                  */
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: ExactAssetImage('images/' + friend.file),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  child: Stack(
+                    children: [
+                      Align(
+                          alignment: Alignment.topRight,
+                          child: Container(
+                            margin: const EdgeInsets.all(5),
+                            child: friend.isFav
+                                ? Stack(
+                                    children: [
+                                      Icon(Icons.favorite, color: Colors.pink),
+                                      Icon(Icons.favorite_border,
+                                          color: Colors.white),
+                                    ],
+                                  )
+                                : Icon(Icons.favorite_border,
+                                    color: Colors.white),
+                          )),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Container(
+                          margin: const EdgeInsets.all(5),
+                          //padding: const EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                              //color: Theme.of(context).primaryColor,
+                              borderRadius: BorderRadius.circular(100)),
+                          child: Text(
+                            friend.name,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              /*
+              Container(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  friend.name,
+                  style: TextStyle(fontSize: 20, color: Colors.white),
+                  textAlign: TextAlign.center,
+                ),
+                color: Colors.black,
+              )
+              */
+            ]),
       ),
     );
