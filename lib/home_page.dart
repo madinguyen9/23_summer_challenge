@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_app/utils.dart';
+import 'package:flutter_app/friend-profile.dart';
 
 class Friend {
   String name;
@@ -236,7 +237,7 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-/*
+
 Widget buildHorizList() => ListView(
       // This next line does the trick.
       scrollDirection: Axis.horizontal,
@@ -266,7 +267,7 @@ Widget buildHorizList() => ListView(
         ),
       ],
     );
-    */
+
 
 Widget buildSearchInput(TextEditingController c) => Container(
       decoration: BoxDecoration(
@@ -310,7 +311,7 @@ Widget buildLayoutScreen(BuildContext context, List<Friend> friends) =>
       flex: 7,
       child: GridView.builder(
         itemCount: friends.length,
-        itemBuilder: (context, index) => buildImageCard(index, friends[index]),
+        itemBuilder: (context, index) => buildImageCard(index, friends[index], context),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           mainAxisSpacing: 8,
@@ -319,21 +320,21 @@ Widget buildLayoutScreen(BuildContext context, List<Friend> friends) =>
       ),
     );
 
-Widget buildImageCard(int index, Friend friend) => Card(
+Widget buildImageCard(int index, Friend friend, BuildContext context) => Card(
       clipBehavior: Clip.antiAlias,
       margin: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
       child: GestureDetector(
-        /*
-        onTap: () => Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => AlbumScreen(artist: artist),
-          ),
-        ),
-        */
+
+        onTap: () {
+            // navigate to the desired page
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Scene()),
+            );
+        },
 
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,

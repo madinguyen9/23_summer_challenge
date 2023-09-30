@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_app/utils.dart';
 import 'package:flutter_app/friend-profile.dart';
+import 'package:flutter_app/home_page.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -69,7 +70,7 @@ class LoginPage extends StatelessWidget {
                             // signupmvF (8:145)
                             margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 40*fem),
                             child: Text(
-                              'Sign up',
+                              'Sign in',
                               style: SafeGoogleFont (
                                 'Poppins',
                                 fontSize: 34*ffem,
@@ -140,7 +141,7 @@ class LoginPage extends StatelessWidget {
                                     // navigate to the desired page
                                     Navigator.push(
                                       context,
-                                      MaterialPageRoute(builder: (context) => Scene()),
+                                      MaterialPageRoute(builder: (context) => HomePage()),
                                     );
                                 },
                               child: Container(

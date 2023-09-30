@@ -204,7 +204,12 @@ class _GiftsState extends State<Gifts> {
     });
   }
       Future<String> getGiftIdea(List<CheckBox> gifts) async {
-    var url = Uri.parse('https://api.openai.com/v1/engines/davinci/completions');
+    var url = Uri.parse('https://api.openai.com/v1/chat/completions');
+
+    String promptText = 'Based on the following gift ideas: ${gifts.map((e) => e.Text).join(", ")}. Generate a new gift idea:';
+
+    // 1. Log the prompt to see its structure
+    print("Sending Prompt to OpenAI: $promptText");
 
     var response = await http.post(url,
         headers: {
@@ -214,8 +219,14 @@ class _GiftsState extends State<Gifts> {
         body: json.encode({
           'prompt':
               'Based on the following gift ideas: ${gifts.map((e) => e.Text).join(", ")}. Generate a new gift idea:',
-          'max_tokens': 100
+          'max_tokens': 7
+
         }));
+
+        print("OpenAI Response: ${response.body}");
+
+
+        
 
     if (response.statusCode == 200) {
       var data = json.decode(response.body);
